@@ -1,10 +1,12 @@
 {
   "name": "udacity-my-reads",
   "version": "0.1.0",
+  "homepage": "https://eugeniobarrosjr.github.io/udacity-my-reads/",
   "dependencies": {
     "@material-ui/core": "^3.2.0",
     "@material-ui/icons": "^3.0.1",
     "escape-string-regexp": "^1.0.5",
+    "gh-pages": "^2.0.1",
     "prop-types": "^15.6.2",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
@@ -16,7 +18,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
