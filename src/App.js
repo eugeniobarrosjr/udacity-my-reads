@@ -3,6 +3,7 @@ import React, { Component, Fragment } from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 import Loader from './components/Loader';
+import Routes from './routes';
 
 import * as BooksAPI from './services/BooksAPI';
 
@@ -41,6 +42,7 @@ export default class App extends Component {
       <Fragment>
         {loading && <Loader />}
         <CssBaseline />
+        <Routes books={books} updateBookDetails={this.updateBookDetails} />
       </Fragment>
     );
   }
