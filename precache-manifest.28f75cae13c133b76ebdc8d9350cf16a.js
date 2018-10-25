@@ -8,15 +8,15 @@ self.__precacheManifest = [
     "url": "/udacity-my-reads/static/js/runtime~main.19776f8b.js"
   },
   {
-    "revision": "291a82cdecaf34dddd65",
-    "url": "/udacity-my-reads/static/js/main.291a82cd.chunk.js"
+    "revision": "8840f9b58bbd402f01ee",
+    "url": "/udacity-my-reads/static/js/main.8840f9b5.chunk.js"
   },
   {
-    "revision": "cdb61fef69cb345e1f1e",
-    "url": "/udacity-my-reads/static/js/1.cdb61fef.chunk.js"
+    "revision": "05de23bef257921e2def",
+    "url": "/udacity-my-reads/static/js/1.05de23be.chunk.js"
   },
   {
-    "revision": "81de66bc0ee4308a3977aea6e8ca9e46",
+    "revision": "8f850594a15f40f11fba1039c05df0da",
     "url": "/udacity-my-reads/index.html"
   }
 ];
