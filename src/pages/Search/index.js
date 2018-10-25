@@ -118,7 +118,12 @@ class Search extends Component {
         </AppBar>
         <div className={classes.booksContainer}>
           {bookFound === false && (
-            <Typography variant="h5" color="textPrimary" className={classes.subtitle}>
+            <Typography
+              variant="h5"
+              align="center"
+              color="textPrimary"
+              className={classes.subtitle}
+            >
               No results found
             </Typography>
           )}
