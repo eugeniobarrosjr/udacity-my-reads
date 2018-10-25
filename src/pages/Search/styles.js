@@ -65,7 +65,6 @@ const styles = theme => ({
   subtitle: {
     position: 'fixed',
     top: '50%',
-    left: '50%',
     width: '100%',
     height: '100%',
   },
