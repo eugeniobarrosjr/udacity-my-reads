@@ -10,10 +10,13 @@ const Routes = ({ books, updateBookDetails }) => (
     <Switch>
       <Route
         exact
-        path="/"
+        path={`${process.env.PUBLIC_URL}/`}
         render={() => <Main books={books} updateBookDetails={updateBookDetails} />}
       />
-      <Route path="/search" render={() => <Search updateBookDetails={updateBookDetails} />} />
+      <Route
+        path={`${process.env.PUBLIC_URL}/search`}
+        render={() => <Search updateBookDetails={updateBookDetails} />}
+      />
     </Switch>
   </BrowserRouter>
 );
