@@ -23,6 +23,7 @@ class Search extends Component {
     books: [],
     searchingBooks: [],
     loading: false,
+    bookFound: true,
   };
 
   searchingBooks = {};
@@ -47,7 +48,7 @@ class Search extends Component {
       const match = new RegExp(escapeRegExp(e.target.value), 'i');
       if (match.test(e.target.value)) {
         try {
-          this.setState(() => ({ loading: true }));
+          this.setState(() => ({ loading: true, bookFound: true }));
           const response = await BooksAPI.search(e.target.value);
           if (Array.isArray(response)) {
             this.searchingBooks = response;
@@ -66,6 +67,8 @@ class Search extends Component {
                 loading: false,
               });
             }
+          } else {
+            this.setState(() => ({ loading: false, bookFound: false, searchingBooks: [] }));
           }
         } catch (error) {
           throw new Error(error);
@@ -76,7 +79,7 @@ class Search extends Component {
 
   render() {
     const { classes, updateBookDetails } = this.props;
-    const { searchingBooks, loading } = this.state;
+    const { searchingBooks, loading, bookFound } = this.state;
 
     return (
       <div className={classes.root}>
@@ -114,6 +117,11 @@ class Search extends Component {
           </Toolbar>
         </AppBar>
         <div className={classes.booksContainer}>
+          {bookFound === false && (
+            <Typography variant="h5" color="textPrimary" className={classes.subtitle}>
+              No results found
+            </Typography>
+          )}
           {searchingBooks.map(book => (
             <BookCard key={book.id} book={book} updateBookDetails={updateBookDetails} />
           ))}
