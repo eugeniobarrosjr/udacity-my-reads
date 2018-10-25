@@ -1,12 +1,12 @@
 {
-  "main.js": "/udacity-my-reads/static/js/main.8c830764.chunk.js",
-  "main.js.map": "/udacity-my-reads/static/js/main.8c830764.chunk.js.map",
+  "main.js": "/udacity-my-reads/static/js/main.4179ef0f.chunk.js",
+  "main.js.map": "/udacity-my-reads/static/js/main.4179ef0f.chunk.js.map",
   "static/js/1.cdb61fef.chunk.js": "/udacity-my-reads/static/js/1.cdb61fef.chunk.js",
   "static/js/1.cdb61fef.chunk.js.map": "/udacity-my-reads/static/js/1.cdb61fef.chunk.js.map",
   "runtime~main.js": "/udacity-my-reads/static/js/runtime~main.19776f8b.js",
   "runtime~main.js.map": "/udacity-my-reads/static/js/runtime~main.19776f8b.js.map",
   "static/media/defbookcover.jpg": "/udacity-my-reads/static/media/defbookcover.9a0ece9c.jpg",
   "index.html": "/udacity-my-reads/index.html",
-  "precache-manifest.83ec5efab414a471a2c42ca4119a899a.js": "/udacity-my-reads/precache-manifest.83ec5efab414a471a2c42ca4119a899a.js",
+  "precache-manifest.c1f645c73f6b175e64dd076c24fffbb5.js": "/udacity-my-reads/precache-manifest.c1f645c73f6b175e64dd076c24fffbb5.js",
   "service-worker.js": "/udacity-my-reads/service-worker.js"
 }
