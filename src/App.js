@@ -1,28 +1,47 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component, Fragment } from 'react';
 
-class App extends Component {
+import CssBaseline from '@material-ui/core/CssBaseline';
+
+import Loader from './components/Loader';
+
+import * as BooksAPI from './services/BooksAPI';
+
+export default class App extends Component {
+  state = {
+    books: [],
+    loading: false,
+  };
+
+  async componentDidMount() {
+    try {
+      const response = await BooksAPI.getAll();
+      this.setState(() => ({ books: response }));
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+
+  updateBookDetails = async () => {
+    this.setState(() => ({ loading: true }));
+    try {
+      const response = await BooksAPI.getAll();
+      this.setState(() => ({
+        books: response,
+        loading: false,
+      }));
+    } catch (error) {
+      throw new Error(error);
+    }
+  };
+
   render() {
+    const { books, loading } = this.state;
+
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <Fragment>
+        {loading && <Loader />}
+        <CssBaseline />
+      </Fragment>
     );
   }
 }
-
-export default App;
