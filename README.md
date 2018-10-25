@@ -3,6 +3,10 @@ Udacity's React Fundamentals course, part of the [React Nanodegree Program](http
 
 My Reads is a bookshelf app that allows users to categorize books they have read, are currently reading or want to read. The project uses React to build the application and uses API server provided by Udacity and client library that persist information as user interact with the application.
 
+## Demo
+
+[https://eugeniobarrosjr.github.io/udacity-my-reads/](https://eugeniobarrosjr.github.io/udacity-my-reads/)
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
