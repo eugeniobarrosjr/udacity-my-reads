@@ -6,17 +6,14 @@ import Main from './pages/Main';
 import Search from './pages/Search';
 
 const Routes = ({ books, updateBookDetails }) => (
-  <BrowserRouter>
+  <BrowserRouter basename={process.env.PUBLIC_URL}>
     <Switch>
       <Route
         exact
-        path={`${process.env.PUBLIC_URL}/`}
+        path="/"
         render={() => <Main books={books} updateBookDetails={updateBookDetails} />}
       />
-      <Route
-        path={`${process.env.PUBLIC_URL}/search`}
-        render={() => <Search updateBookDetails={updateBookDetails} />}
-      />
+      <Route path="/search" render={() => <Search updateBookDetails={updateBookDetails} />} />
     </Switch>
   </BrowserRouter>
 );
