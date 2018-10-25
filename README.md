@@ -5,7 +5,7 @@ My Reads is a bookshelf app that allows users to categorize books they have read
 
 ## Demo
 
-[https://ricardocanelas.github.io/reactnd-project-myreads](https://ricardocanelas.github.io/reactnd-project-myreads)
+[https://eugeniobarrosjr.github.io/udacity-my-reads/](https://eugeniobarrosjr.github.io/udacity-my-reads/)
 
 ## Getting Started
 
