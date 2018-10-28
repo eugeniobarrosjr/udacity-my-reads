@@ -21,56 +21,52 @@ import styles from './styles';
 class Search extends Component {
   state = {
     books: [],
-    searchingBooks: [],
+    bookFound: null,
     loading: false,
-    bookFound: true,
   };
 
-  searchingBooks = {};
+  handleChange = (event) => {
+    const { value } = event.target;
+    this.setState(() => ({ bookFound: null }));
+    this.searchQuery(value);
+  };
 
-  async componentDidMount() {
-    try {
-      const response = await BooksAPI.getAll();
-      this.setState(() => ({ books: response }));
-    } catch (error) {
-      throw new Error(error);
-    }
-  }
+  handleBookShelf = (searchBooks) => {
+    const { books } = this.props;
+    const AllSearchBooks = searchBooks.map((book) => {
+      book.shelf = 'none';
+      return book;
+    });
 
-  searchQuery = async (e) => {
-    const { books } = this.state;
-    if (e.target.value === 'undefined' || e.target.value === '') {
+    AllSearchBooks.forEach((searchBook) => {
+      books.forEach((book) => {
+        if (searchBook.id === book.id) {
+          searchBook.shelf = book.shelf;
+        }
+      });
+    });
+    return AllSearchBooks;
+  };
+
+  searchQuery = async (value) => {
+    if (value === 'undefined' || value === '') {
       this.setState(() => ({
-        searchingBooks: [],
-        loading: false,
+        books: [],
       }));
     } else {
-      const match = new RegExp(escapeRegExp(e.target.value), 'i');
-      if (match.test(e.target.value)) {
+      const match = new RegExp(escapeRegExp(value), 'i');
+      if (match.test(value)) {
         try {
-          this.setState(() => ({ loading: true, bookFound: true }));
-          const response = await BooksAPI.search(e.target.value);
-          if (Array.isArray(response)) {
-            this.searchingBooks = response;
-            if (this.searchingBooks !== undefined && this.searchingBooks instanceof Array) {
-              this.searchingBooks.forEach((searchingBook) => {
-                books.forEach((book) => {
-                  if (searchingBook.id === book.id) {
-                    searchingBook.shelf = book.shelf;
-                  } else {
-                    searchingBook.shelf = 'none';
-                  }
-                });
-              });
-              this.setState({
-                searchingBooks: this.searchingBooks,
-                loading: false,
-              });
-            }
+          this.setState(() => ({ loading: true }));
+          const response = await BooksAPI.search(value);
+          if (Array.isArray(response) && response.length > 0) {
+            const updatedBooks = this.handleBookShelf(response);
+            this.setState(() => ({ books: updatedBooks, loading: false, bookFound: true }));
           } else {
-            this.setState(() => ({ loading: false, bookFound: false, searchingBooks: [] }));
+            this.setState(() => ({ loading: false, bookFound: false, books: [] }));
           }
         } catch (error) {
+          this.setState(() => ({ loading: false, bookFound: false, books: [] }));
           throw new Error(error);
         }
       }
@@ -79,7 +75,9 @@ class Search extends Component {
 
   render() {
     const { classes, updateBookDetails } = this.props;
-    const { searchingBooks, loading, bookFound } = this.state;
+    const {
+      books, loading, bookFound,
+    } = this.state;
 
     return (
       <div className={classes.root}>
@@ -105,7 +103,7 @@ class Search extends Component {
               <Debounce time="400" handler="onChange">
                 <InputBase
                   placeholder="Search…"
-                  onChange={this.searchQuery}
+                  onChange={this.handleChange}
                   classes={{
                     root: classes.inputRoot,
                     input: classes.inputInput,
@@ -127,7 +125,7 @@ class Search extends Component {
               No results found
             </Typography>
           )}
-          {searchingBooks.map(book => (
+          {books.map(book => (
             <BookCard key={book.id} book={book} updateBookDetails={updateBookDetails} />
           ))}
         </div>
@@ -138,6 +136,11 @@ class Search extends Component {
 
 Search.propTypes = {
   classes: propTypes.shape({}).isRequired,
+  books: propTypes.arrayOf(
+    propTypes.shape({
+      book: propTypes.object,
+    }),
+  ).isRequired,
   updateBookDetails: propTypes.func.isRequired,
 };
 

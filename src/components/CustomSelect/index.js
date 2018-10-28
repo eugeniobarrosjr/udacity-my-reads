@@ -7,7 +7,6 @@ import {
 } from '@material-ui/core';
 
 import styles from './styles';
-import * as BooksAPI from '../../services/BooksAPI';
 
 class CustomSelect extends Component {
   static propTypes = {
@@ -23,18 +22,14 @@ class CustomSelect extends Component {
   };
 
   componentDidMount() {
-    const {
-      book: { shelf },
-    } = this.props;
-
-    this.setState(() => ({
-      shelf,
-    }));
+    const { book } = this.props;
+    this.setState(() => ({ shelf: book.shelf }));
   }
 
   render() {
     const { shelf } = this.state;
-    const { classes, book, updateBookDetails } = this.props;
+    const { classes, updateBookDetails, book } = this.props;
+
     return (
       <form autoComplete="off">
         <FormControl className={classes.formControl}>
@@ -44,11 +39,11 @@ class CustomSelect extends Component {
           <Select
             style={{ width: 175 }}
             autoWidth
-            value={shelf}
             onChange={(e) => {
-              BooksAPI.update(book, e.target.value).then(() => updateBookDetails());
-              this.setState({ shelf: e.target.value });
+              updateBookDetails(book, e.target.value);
+              this.setState(() => ({ shelf: e.target.value }));
             }}
+            value={shelf}
           >
             <MenuItem value="" disabled>
               Move to...

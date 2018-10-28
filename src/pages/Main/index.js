@@ -9,21 +9,18 @@ const Main = ({ books, updateBookDetails }) => (
   <Fragment>
     <Header />
     <BookShelf
-      books={books}
+      books={books.filter(book => book.shelf === 'currentlyReading')}
       title="Currently Reading"
-      typeOfShelf="currentlyReading"
       updateBookDetails={updateBookDetails}
     />
     <BookShelf
-      books={books}
+      books={books.filter(book => book.shelf === 'wantToRead')}
       title="Want to Read"
-      typeOfShelf="wantToRead"
       updateBookDetails={updateBookDetails}
     />
     <BookShelf
       title="Read"
-      books={books}
-      typeOfShelf="read"
+      books={books.filter(book => book.shelf === 'read')}
       updateBookDetails={updateBookDetails}
     />
     <FloatingButton />

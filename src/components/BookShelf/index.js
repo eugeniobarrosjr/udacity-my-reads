@@ -9,25 +9,22 @@ import BookCard from '../BookCard';
 import styles from './styles';
 
 const BookShelf = ({
-  classes, typeOfShelf, books, updateBookDetails, title,
+  classes, books, updateBookDetails, title,
 }) => (
   <div className={classes.container}>
     <Typography className={classes.title} variant="h4" color="textPrimary">
       {title}
     </Typography>
     <div className={classes.booksContainer}>
-      {books.map(
-        book => book.shelf === typeOfShelf && (
+      {books.map(book => (
         <BookCard key={book.id} book={book} updateBookDetails={updateBookDetails} />
-        ),
-      )}
+      ))}
     </div>
   </div>
 );
 
 BookShelf.propTypes = {
   classes: propTypes.shape({}).isRequired,
-  typeOfShelf: propTypes.string.isRequired,
   title: propTypes.string.isRequired,
   books: propTypes.arrayOf(
     propTypes.shape({

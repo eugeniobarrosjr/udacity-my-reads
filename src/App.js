@@ -13,24 +13,32 @@ export default class App extends Component {
     loading: false,
   };
 
-  async componentDidMount() {
-    try {
-      const response = await BooksAPI.getAll();
-      this.setState(() => ({ books: response }));
-    } catch (error) {
-      throw new Error(error);
-    }
+  componentDidMount() {
+    this.getAllBooks();
   }
 
-  updateBookDetails = async () => {
+  getAllBooks = async () => {
     this.setState(() => ({ loading: true }));
     try {
       const response = await BooksAPI.getAll();
+      console.log(response);
       this.setState(() => ({
         books: response,
         loading: false,
       }));
     } catch (error) {
+      this.setState(() => ({ loading: false }));
+      throw new Error(error);
+    }
+  };
+
+  updateBookDetails = async (book, shelf) => {
+    this.setState(() => ({ loading: true }));
+    try {
+      await BooksAPI.update(book, shelf);
+      this.getAllBooks();
+    } catch (error) {
+      this.setState(() => ({ loading: false }));
       throw new Error(error);
     }
   };

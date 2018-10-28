@@ -13,7 +13,10 @@ const Routes = ({ books, updateBookDetails }) => (
         path="/"
         render={() => <Main books={books} updateBookDetails={updateBookDetails} />}
       />
-      <Route path="/search" render={() => <Search updateBookDetails={updateBookDetails} />} />
+      <Route
+        path="/search"
+        render={() => <Search books={books} updateBookDetails={updateBookDetails} />}
+      />
     </Switch>
   </BrowserRouter>
 );
