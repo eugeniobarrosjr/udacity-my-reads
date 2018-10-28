@@ -21,7 +21,6 @@ export default class App extends Component {
     this.setState(() => ({ loading: true }));
     try {
       const response = await BooksAPI.getAll();
-      console.log(response);
       this.setState(() => ({
         books: response,
         loading: false,

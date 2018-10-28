@@ -33,19 +33,10 @@ class Search extends Component {
 
   handleBookShelf = (searchBooks) => {
     const { books } = this.props;
-    const AllSearchBooks = searchBooks.map((book) => {
-      book.shelf = 'none';
-      return book;
-    });
-
-    AllSearchBooks.forEach((searchBook) => {
-      books.forEach((book) => {
-        if (searchBook.id === book.id) {
-          searchBook.shelf = book.shelf;
-        }
-      });
-    });
-    return AllSearchBooks;
+    return searchBooks.map(searchBook => ({
+      ...searchBook,
+      shelf: books.find(b => b.id === searchBook.id) ? b.shelf : 'none',
+    }));
   };
 
   searchQuery = async (value) => {
@@ -75,9 +66,7 @@ class Search extends Component {
 
   render() {
     const { classes, updateBookDetails } = this.props;
-    const {
-      books, loading, bookFound,
-    } = this.state;
+    const { books, loading, bookFound } = this.state;
 
     return (
       <div className={classes.root}>

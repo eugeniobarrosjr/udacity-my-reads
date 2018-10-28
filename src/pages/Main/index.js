@@ -5,24 +5,23 @@ import BookShelf from '../../components/BookShelf';
 import Header from '../../components/Header';
 import FloatingButton from '../../components/FloatingButton';
 
+const shelfs = [
+  { shelf: 'currentlyReading', title: 'Currently Reading' },
+  { shelf: 'wantToRead', title: 'Want to Read' },
+  { shelf: 'read', title: 'Read' },
+];
+
 const Main = ({ books, updateBookDetails }) => (
   <Fragment>
     <Header />
-    <BookShelf
-      books={books.filter(book => book.shelf === 'currentlyReading')}
-      title="Currently Reading"
-      updateBookDetails={updateBookDetails}
-    />
-    <BookShelf
-      books={books.filter(book => book.shelf === 'wantToRead')}
-      title="Want to Read"
-      updateBookDetails={updateBookDetails}
-    />
-    <BookShelf
-      title="Read"
-      books={books.filter(book => book.shelf === 'read')}
-      updateBookDetails={updateBookDetails}
-    />
+    {shelfs.map(({ shelf, title }) => (
+      <BookShelf
+        key={shelf}
+        books={books.filter(book => book.shelf === shelf)}
+        title={title}
+        updateBookDetails={updateBookDetails}
+      />
+    ))}
     <FloatingButton />
   </Fragment>
 );
